@@ -30,13 +30,15 @@ The problem was clear: we needed a solution that could interpret varied medical 
 
 ## Day 3: Conceptualizing the Solution
 
+![Solution concept](screenshots/solution_overview.png)
+
 I envisioned an AI-powered app that could:
 1. Parse any food intolerance report
 2. Create a personalized dietary profile
 3. Analyze food products in real-time
 4. Provide safe eating recommendations
 
-![Solution concept](screenshots/solution_overview.png)
+![Full Flow](/screenshots/all_steps.png)
 
 But how to build it? I needed a powerful AI backbone that could handle complex language processing, image recognition, and data analysis. After evaluating various options, I discovered Upstage AI's suite of APIs. Their combination of document parsing, OCR, embedding, and language models seemed perfect for our needs.
 
