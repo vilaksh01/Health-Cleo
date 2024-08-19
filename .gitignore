@@ -6,3 +6,5 @@ check.py
 cred.txt
 
 *.mov
+
+.DS_Store
