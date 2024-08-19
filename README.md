@@ -104,24 +104,51 @@ def categorize_food_item(value: float, reference_range: ReferenceRange) -> str:
     else:
         return "Normal"
 
-def process_pdf(self, pdf_path: str) -> FoodIntoleranceReport:
-    loader = UpstageLayoutAnalysisLoader(pdf_path, split="page", api_key=self.upstage_api_key, use_ocr=True, output_type="html")
-    docs = loader.load()
+class FoodIntoleranceAnalysisService:
+    def __init__(self, upstage_api_key: str, tavily_api_key: str):
+        self.upstage_api_key = upstage_api_key
+        self.tavily_api_key = tavily_api_key
+        self.embeddings: Embeddings = UpstageEmbeddings(api_key=upstage_api_key, model="solar-embedding-1-large")
+        self.llm: BaseLLM = ChatUpstage(api_key=upstage_api_key)
+        self.translator: BaseLLM = ChatUpstage(api_key=upstage_api_key, model="solar-1-mini-translate-koen")
+        self.groundedness_check = UpstageGroundednessCheck(api_key=upstage_api_key)
+        self.vectorstore: VectorStore = None
+        self.reference_range: ReferenceRange = None
+        self.food_items: List[FoodItem] = []
+        self.api = openfoodfacts.API(user_agent="FoodIntoleranceApp/1.0")
+        self.tavily = TavilyClient(api_key=tavily_api_key)
 
-    all_tables = []
-    for doc in docs:
-        tables = extract_tables_from_html(doc.page_content)
-        all_tables.extend(tables)
+        self.text_splitter = RecursiveCharacterTextSplitter(
+            chunk_size=3000,
+            chunk_overlap=200,
+            length_function=self.llm.get_num_tokens
+        )
 
-    chunked_tables = self.text_splitter.split_text("\n".join(all_tables))
-    table_docs = [Document(page_content=chunk) for chunk in chunked_tables]
+    def stream(self, prompt: str):
+        """
+        Stream the response from the LLM for the chat interface.
+        """
+        messages = [HumanMessage(content=prompt)]
+        return self.llm.stream(messages)
 
-    self.vectorstore = Chroma.from_documents(table_docs, self.embeddings)
+    def process_pdf(self, pdf_path: str) -> FoodIntoleranceReport:
+        loader = UpstageLayoutAnalysisLoader(pdf_path, split="page", api_key=self.upstage_api_key, use_ocr=True, output_type="html")
+        docs = loader.load()
 
-    self.reference_range = self._extract_reference_range(chunked_tables)
-    self.food_items = self._extract_food_items(chunked_tables)
+        all_tables = []
+        for doc in docs:
+            tables = extract_tables_from_html(doc.page_content)
+            all_tables.extend(tables)
 
-    return FoodIntoleranceReport(reference_range=self.reference_range, food_items=self.food_items)
+        chunked_tables = self.text_splitter.split_text("\n".join(all_tables))
+        table_docs = [Document(page_content=chunk) for chunk in chunked_tables]
+
+        self.vectorstore = Chroma.from_documents(table_docs, self.embeddings)
+
+        self.reference_range = self._extract_reference_range(chunked_tables)
+        self.food_items = self._extract_food_items(chunked_tables)
+
+        return FoodIntoleranceReport(reference_range=self.reference_range, food_items=self.food_items)
 ```
 
 Let's break down the key components:
