@@ -1,0 +1,8 @@
+.venv
+/chroma_db
+cleo/__pycache__
+
+check.py
+cred.txt
+
+*.mov
