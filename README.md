@@ -13,7 +13,9 @@ I pulled out my food intolerance report, a crumpled piece of paper filled with n
 ![Report](/screenshots/report.png)
 
 **Note: Streamlit Demo video attached below** 
+
 **[Click Here To See Streamlit App Demo](#running-streamlit-demo)**
+
 **![YouTube Video](https://youtu.be/9h8kkVFOmTM)**
 
 ## Day 2: Research and Problem Definition
