@@ -6,11 +6,14 @@
 
 It all started on a bustling street in Jeju, South Korea. I stood there, overwhelmed by the vibrant array of street food, but paralyzed by uncertainty. As someone with multiple food intolerances, I found myself in a familiar predicament: how could I safely navigate this culinary paradise without risking my health?
 
-![Story Image](imgs/dem.jpg) | 
+![Story Image](imgs/dem.jpg) 
 
 I pulled out my food intolerance report, a crumpled piece of paper filled with numbers and medical jargon. As I squinted at the tiny print, trying to remember which foods were safe and which weren't, a thought struck me: why isn't there an app for this?
 
 ![Report](/screenshots/report.png)
+
+**Note: Streamlit Demo video attached below** 
+**[Click Here To See Streamlit App Demo](#running-streamlit-demo)**
 
 ## Day 2: Research and Problem Definition
 
@@ -399,6 +402,8 @@ After an intense week, Health Cleo was born. It's not just an app; it's a person
 But more than that, it's a testament to the power of innovative engineering combined with cutting-edge AI. By leveraging Upstage AI's suite of APIs and implementing clever software design patterns, we've created a solution that turns the complex world of food intolerances into manageable, actionable information.
 
 ## Running Streamlit demo
+
+![Demo](/imgs/demo1_full_vid.gif)
 
 There is a run.sh script add you api keys and lauch the script in your terminal.
 

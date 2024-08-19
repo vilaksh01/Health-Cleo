@@ -1,5 +1,5 @@
 # make a new virtual env using python 3.11 (tested on MacOS 14.6.1)
-# python3 -m venv .venv
+# python3.11 -m venv .venv
 # source .venv/bin/activate
 
 # pip install -r requirements.txt
