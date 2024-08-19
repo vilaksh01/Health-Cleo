@@ -376,7 +376,7 @@ But more than that, it's a testament to the power of innovative engineering comb
 There is a run.sh script add you api keys and lauch the script in your terminal.
 
 ```bash
-# important to make a new virtual env using python 3.11 (tested on MacOS 14.6.1)
+# make a new virtual env using python 3.11 (tested on MacOS 14.6.1)
 # python3.11 -m venv .venv
 # source .venv/bin/activate
 
