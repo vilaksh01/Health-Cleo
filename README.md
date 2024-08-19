@@ -371,6 +371,25 @@ After an intense week, Health Cleo was born. It's not just an app; it's a person
 
 But more than that, it's a testament to the power of innovative engineering combined with cutting-edge AI. By leveraging Upstage AI's suite of APIs and implementing clever software design patterns, we've created a solution that turns the complex world of food intolerances into manageable, actionable information.
 
+## Running Streamlit demo
+
+There is a run.sh script add you api keys and lauch the script in your terminal.
+
+```bash
+# important to make a new virtual env using python 3.11 (tested on MacOS 14.6.1)
+# python3.11 -m venv .venv
+# source .venv/bin/activate
+
+# pip install -r requirements.txt
+
+cd cleo
+
+export UPSTAGE_API_KEY="upstage-api-key"
+export TAVILY_API_KEY="tavily-api-key"
+
+streamlit run service.py --server.port 8501 --server.address 0.0.0.0
+```
+
 ## Looking Ahead
 
 As I reflect on this journey, I'm excited about the future. There's so much more we can do:
