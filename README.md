@@ -1,3 +1,5 @@
+# Health Cleo v1: https://github.com/vilaksh01/Health-Cleo/blob/main/README-old.md
+
 # Health Cleo v2: AI-Powered Personalized Nutrition Intelligence
 
 ## Our 3-Day Innovation Sprint [27 - 30 Sept]
